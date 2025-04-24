@@ -14,8 +14,64 @@ A command-line tool for analyzing AWS costs using the AWS Cost Explorer API. Thi
 ## Prerequisites
 
 - Python 3.7 or higher
-- AWS credentials configured (via AWS CLI or environment variables)
+- AWS CLI installed and configured
 - Required Python packages (listed in requirements.txt)
+
+## AWS Configuration
+
+### 1. Install AWS CLI
+
+First, install the AWS CLI if you haven't already:
+```bash
+# For macOS
+brew install awscli
+
+# For Windows (using PowerShell)
+msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
+
+# For Linux
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+```
+
+### 2. Configure AWS Credentials
+
+Run the following command to configure your AWS credentials:
+```bash
+aws configure
+```
+
+You'll need to provide:
+- AWS Access Key ID
+- AWS Secret Access Key
+- Default region name (e.g., us-east-1)
+- Default output format (json)
+
+### 3. Required IAM Permissions
+
+The IAM user or role running this tool needs the following permissions:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ce:GetCostAndUsage"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+To add these permissions:
+1. Go to the AWS IAM Console
+2. Select your user/role
+3. Add the above policy or attach the `AWSCostExplorerReadOnlyAccess` managed policy
+4. If using an IAM role, ensure it has the necessary trust relationships configured
 
 ## Installation
 
@@ -90,12 +146,24 @@ When using the `--json` flag, the output is a structured JSON object containing:
 - pandas>=2.0.0: Data manipulation and analysis
 - rich>=13.7.0: Beautiful terminal formatting
 
-## AWS Permissions
+## Troubleshooting
 
-This tool requires the following AWS permissions:
-- `ce:GetCostAndUsage`
+### Common Issues
 
-Make sure your AWS credentials have the necessary permissions to access the Cost Explorer API.
+1. **AWS Credentials Not Found**
+   - Ensure AWS CLI is properly configured
+   - Check if credentials are in `~/.aws/credentials`
+   - Verify environment variables `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` if using them
+
+2. **Permission Denied**
+   - Verify IAM permissions are correctly configured
+   - Check if the IAM user/role has the required Cost Explorer permissions
+   - Ensure you're using the correct AWS profile if multiple profiles are configured
+
+3. **No Cost Data Available**
+   - Verify you have active AWS resources
+   - Check if you're looking at the correct AWS account
+   - Ensure Cost Explorer is enabled for your account
 
 ## Contributing
 
