@@ -179,14 +179,22 @@ def main():
     services_table.add_column("Cost", justify="right", style="green")
     services_table.add_column("% of Total", justify="right", style="yellow")
     
+    # Add all services with cost > $0.01
     for service, cost in service_costs.items():
-        percentage = (cost/total_cost*100)
         if cost > 0.01:  # Only show services with cost > 1 cent
+            percentage = (cost/total_cost*100)
             services_table.add_row(
                 service,
                 f"${cost:,.2f}",
                 f"{percentage:.1f}%"
             )
+    
+    # Add total row with bold formatting
+    services_table.add_row(
+        "[bold]Total[/bold]",
+        f"[bold]${total_cost:,.2f}[/bold]",
+        "[bold]100.0%[/bold]"
+    )
     
     console.print(services_table)
     console.print()
