@@ -200,9 +200,11 @@ def main():
     console.print()
     
     # Create detailed breakdown for each service
-    console.print(Panel("[bold cyan]Detailed Cost Breakdown by Service[/bold cyan]", 
-                       box=box.ROUNDED, 
-                       border_style="blue"))
+    console.print(Panel.fit(
+        "[bold cyan]Detailed Cost Breakdown by Service[/bold cyan]", 
+        box=box.ROUNDED,
+        border_style="blue"
+    ))
     
     for service, cost in service_costs.items():
         if cost > 0.01:
