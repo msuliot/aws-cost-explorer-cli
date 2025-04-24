@@ -4,7 +4,7 @@ A command-line tool for analyzing AWS costs using the AWS Cost Explorer API. Thi
 
 ## Example Output
 
-<img src="example-output.png" width="600" alt="AWS Cost Explorer CLI Output">
+<img src="example.png" width="600" alt="AWS Cost Explorer CLI Output">
 
 ## Features
 
