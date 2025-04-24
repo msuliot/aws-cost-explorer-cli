@@ -2,6 +2,10 @@
 
 A command-line tool for analyzing AWS costs using the AWS Cost Explorer API. This tool provides detailed cost breakdowns by service and usage type, with beautiful console output or JSON format options.
 
+## Example Output
+
+![AWS Cost Explorer CLI Output](example-output.png)
+
 ## Features
 
 - 📊 Beautiful rich console output with formatted tables
