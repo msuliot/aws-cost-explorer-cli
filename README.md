@@ -165,10 +165,3 @@ When using the `--json` flag, the output is a structured JSON object containing:
    - Check if you're looking at the correct AWS account
    - Ensure Cost Explorer is enabled for your account
 
-## Contributing
-
-Feel free to submit issues, fork the repository, and create pull requests for any improvements.
-
-## License
-
-[Your chosen license]
